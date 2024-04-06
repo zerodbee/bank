@@ -8,12 +8,15 @@ function App() {
 
   const[page, setPage] = useState('Main')
 
+  const pages = {
+    Main: <Main />
+  }
+
   return (
     <div className
     ="App">
       <Header />
-      <Main />
-
+      { pages[page] }
       <Footer />
     </div>
   );
