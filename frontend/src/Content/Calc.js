@@ -1,17 +1,25 @@
+import React, { UseState } from 'react';
 
-import React from 'react';
-import './Calc.css';
-
-function Calc() {
-  return (
-
-    <div className="Calc">
-      <div className="info1">
-
-    </div>
-    </div>
-
-  );
+const operations = {
+  plus: '+',
+  minus: '-',
+  multiply: '*',
+  division: '/',
+  degree: '**'
 }
+
+const Calculator = () => {
+
+  const [formula, setFormula] = UseState('');
+  const [result, setResult] = UseState('');
+
+
+    return (
+      <main>
+          
+      </main>
+    );
+  }
+
 
 export default Calc;

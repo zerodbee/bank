@@ -1,25 +1,26 @@
 import React, {useState} from 'react';
 import './App.css';
-import Header from './Header';
-import Footer from './Footer';
-import Main from './Content/Main';
+import Main from './Main';
+import {BrowserRouter, Routes, Route} from 'react-router-dom';
+
+import Panel from './admin/Panel'
+
 
 function App() {
 
-  const[page, setPage] = useState('Main')
 
-  const pages = {
-    Main: <Main />
+      return (
+        <div className
+        ="App">
+    <BrowserRouter>
+      <Routes>
+        <Route path='' element={<Main/>} />
+        <Route path='Panel' element={<Panel/>} />
+      </Routes>
+    </BrowserRouter>
+        </div>
+      );
+      
   }
-
-  return (
-    <div className
-    ="App">
-      <Header />
-      { pages[page] }
-      <Footer />
-    </div>
-  );
-}
 
 export default App; //чтобы app был доступен для импорта /app это короче архив склад всех ресов джаваскрипт кода, но отображается все в index a index в хтмл
