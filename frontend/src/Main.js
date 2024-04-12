@@ -11,22 +11,18 @@ const CalcObject = {
 }
 
 function Main() {
-
-      return (
-        <>
-    <div className="Main">
-      <Header />
-        <div className="info1">
-
-              <p className="link1">{CalcObject.name}</p>
-
-            <a href="/Calc" className='btn'>Пeрейти</a>
-          </div>
-    </div>
-    <Footer />
+  return (
+    <>
+    <Header />
+      <div className="Main">
+        <div className="content">
+          <p className="link1">{CalcObject.name}</p>
+          <Link to="/Calc" className="btn">Пeрейти</Link>
+        </div>
+      </div>
+      <Footer />
     </>
   );
-
 }
 
 export default Main;

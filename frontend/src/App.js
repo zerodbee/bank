@@ -1,6 +1,7 @@
 import React, {useState} from 'react';
 import './App.css';
 import Main from './Main';
+import Calc from './Content/Calc';
 import {BrowserRouter, Routes, Route} from 'react-router-dom';
 
 import Panel from './admin/Panel'
@@ -15,7 +16,8 @@ function App() {
     <BrowserRouter>
       <Routes>
         <Route path='' element={<Main/>} />
-        <Route path='Panel' element={<Panel/>} />
+        <Route path='/Panel' element={<Panel/>} />
+        <Route path='/Calc' element={<Calc/>} />
       </Routes>
     </BrowserRouter>
         </div>
