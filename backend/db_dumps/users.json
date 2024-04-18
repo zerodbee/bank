@@ -1,0 +1,18 @@
+[{
+    "_id": {
+      "$oid": "658c83d5f82c308424f1a58b"
+    },
+    "login": "gavrilovegor519",
+    "password": "qwerty",
+    "role": "admin",
+    "__v": 0
+  },
+  {
+    "_id": {
+      "$oid": "658db077d553b13af45f2d86"
+    },
+    "login": "e.gawrilow2016",
+    "password": "qwerty",
+    "role": "user",
+    "__v": 0
+  }]
