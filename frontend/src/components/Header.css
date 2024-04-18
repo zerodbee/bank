@@ -1,0 +1,16 @@
+.Header {
+    display: flex;
+    justify-content: flex-start;
+    align-items: center;
+    background-color: #009999;
+    padding-right: 30px;
+    padding-left: 30px;
+    height: 70px;
+}
+
+.HeaderLink {
+    font-size: 30px;
+    font-weight: bolder;
+    text-decoration: none;
+    color: white;
+}
