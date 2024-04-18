@@ -1,12 +1,24 @@
 const { Schema, model } = require('mongoose')
 
-const Calculator = new Schema({
-    NameCalc: {
+const numberFields = new Schema({
+    fieldName: {
         type: String,
         required: true
     },
+    field: {
+        type: String,
+        required: true
+    }
+})
+
+const Calculator = new Schema({
+    nameCalc: {
+        type: String,
+        required: true,
+        unique: true
+    },
     numberFields: {
-        type: [Number],
+        type: [numberFields],
         required: true
     },
     formula: {

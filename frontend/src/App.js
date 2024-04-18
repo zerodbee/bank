@@ -1,28 +1,20 @@
-import React, {useState} from 'react';
-import './App.css';
-import Main from './Main';
-import Calc from './Content/Calc';
-import {BrowserRouter, Routes, Route} from 'react-router-dom';
-
-import Panel from './admin/Panel'
-
+import React from "react";
+import { BrowserRouter, Routes, Route } from "react-router-dom";
+import "./App.css";
+import Main from "./views/Main";
+import Admin from "./views/Admin";
+import InterfaceCalc from "./views/InterfaceCalc";
 
 function App() {
-
-
-      return (
-        <div className
-        ="App">
+  return (
     <BrowserRouter>
       <Routes>
-        <Route path='' element={<Main/>} />
-        <Route path='/Panel' element={<Panel/>} />
-        <Route path='/Calc' element={<Calc/>} />
+        <Route path="/" element={<Main />} />
+        <Route path="/admin" element={<Admin />} />
+        <Route path="/interfaceCalc/:id" element={<InterfaceCalc />} />
       </Routes>
     </BrowserRouter>
-        </div>
-      );
-      
-  }
+  );
+}
 
-export default App; //чтобы app был доступен для импорта /app это короче архив склад всех ресов джаваскрипт кода, но отображается все в index a index в хтмл
+export default App;

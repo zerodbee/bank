@@ -4,20 +4,30 @@ import Calc from './Content/Calc';
 import Header from './Content/Header';
 import Footer from './Content/Footer';
 import React from 'react';
-
-const CalcObject = {
-  id: 1,
-  name: 'Калькулятор рассрочки'
-}
+import CalculatorItem from '../CalculatorItem'
 
 function Main() {
+  const [calc, setCalc] = useState([]);
+
+  useEffect(() => {
+    const api = "http://127.0.0.1:9001/calculator/get/all";
+
+    fetch(api)
+      .then((result) => result.json())
+      .then((result) => {
+        // console.debug(result.data)
+        setCalc(result.data);
+      });
+  }, []);
+
   return (
     <>
-    <Header />
+      <Header />
       <div className="Main">
         <div className="content">
-          <p className="link1">{CalcObject.name}</p>
-          <Link to="/Calc" className="btn">Пeрейти</Link>
+          {calc.map((item) => (
+            <CalculatorItem nameCalc={item.nameCalc} />
+          ))}
         </div>
       </div>
       <Footer />
