@@ -1,12 +1,21 @@
 [{
-  "nameCalc": "Ипотека",
-  "percent": 9.6
-},
-{
-  "nameCalc": "Автокредит",
-  "percent": 3.5
-},
-{
-  "nameCalc": "Потребительский кредит",
-  "percent": 14.5
+  "_id": {
+    "$oid": "66191febbce65bb7450d7b0b"
+  },
+  "nameCalc": "Test",
+  "numberFields": [
+    {
+      "fieldName": "Field 1",
+      "field": "a"
+    },
+    {
+      "fieldName": "Field 2",
+      "field": "b"
+    },
+    {
+      "fieldName": "Field 3",
+      "field": "c"
+    }
+  ],
+  "formula": "a + b + c"
 }]

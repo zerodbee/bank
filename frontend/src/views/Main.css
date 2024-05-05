@@ -1,26 +1,21 @@
-
-.Main {
-    min-height: calc(100vh - 70px - 70px);
-    height: 100%;
-    margin-top: 50px;
-    margin-bottom: 50px;
+.Main .content {
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    padding: 50px;
     margin-left: auto;
     margin-right: auto;
-
-    width: 800px;
+    width: 400px;
     max-width: 100%;
     flex-wrap: wrap;
-
 }
 
 .content {
-
-justify-content: center;
+    justify-content: center;
     align-items: center;
-
+    display: flex;
     padding: 20px;
-    border-radius: 25px;
-    background-color: rgb(255, 228, 216);
+    background-color: rgb(255, 255, 255);
     max-width: 100%;
     flex-wrap: wrap;
 }
@@ -31,5 +26,12 @@ justify-content: center;
 }
 
 .btn {
-
+    flex-wrap: wrap;
+    max-width: 100%;
+    margin-left: 10px;
+    font-size: 15px;
+    text-decoration: none;
+    color: rgb(255, 255, 255);
+    background-color: #009999;
+    padding: 10px;
 }
