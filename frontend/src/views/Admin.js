@@ -1,53 +1,118 @@
-// import { useState, useEffect } from 'react';
-import React from "react";
-import Header from "../components/Header";
-import Footer from "../components/Footer";
-import "./Admin.css";
+import React, { useEffect, useState } from 'react';
+import Header from '../components/Header';
+import Footer from '../components/Footer';
+
+import './Admin.css';
+import { useNavigate } from 'react-router-dom';
+
+
 
 function Admin() {
-  function AddCalc() {
-    const formula = document.getElementById("formula").value;
-    const nameCalc = document.getElementById("name").value;
+  const [token, setToken] = useState('')
+  const [calcs, setCalcs] = useState([])
+  const navigate = useNavigate()
 
-    let message;
+  useEffect(() => {
+    setToken(localStorage.getItem('jwt'))
 
-    const data = {
-      formula: formula,
-      name: nameCalc,
-    };
+    if (token === null) {
+      navigate('/admin')
+    }
 
-    console.debug(data);
+    const calcsApi = 'http://127.0.0.1:9001/calculator/get/all'
 
-    const api = "http://127.0.0.1:9001/calculator/add";
+    fetch(calcsApi)
+      .then((result) => result.json())
+      .then((result) => {
+        // console.debug(result.data)
+        setCalcs(result.data)
+      })
+  }, [token, navigate])
 
-    fetch(api, {
-      method: "POST",
-      headers: {
-        "Content-Type": "application/json",
-      },
-      body: JSON.stringify(data),
-    });
+  const addCalc = async () => {
+    const nameCalc = document.getElementById('name').value
+    const percent = document.getElementById('percent').value
+
+    if (token !== null) {
+      const api = 'http://127.0.0.1:9001/calculator/add'
+      const calculator = {
+        nameCalc,
+        percent
+      }
+      const data = {
+        token,
+        calculator
+      }
+
+      await fetch(api, {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json'
+        },
+        body: JSON.stringify(data)
+      })
+        .then((result) => result.json())
+        .then((result) => {
+          document.getElementById('message').innerText = result.message
+        })
+    }
   }
+
+  const editCalc = async (id) => {
+    navigate('/admin/edit/' + id)
+  }
+
+  const deleteCalc = async (id) => {
+    if (token !== null) {
+      const api = 'http://127.0.0.1:9001/calculator/delete/' + id
+      
+      const data = {
+        token
+      }
+
+      await fetch(api, {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json'
+        },
+        body: JSON.stringify(data)
+      })
+        .then((result) => result.json())
+        .then((result) => {
+          document.getElementById('message').innerText = result.message
+        })
+    }
+  }
+
+
 
   return (
     <>
       <Header />
-      <div className="Admin">
-        <div className="content">
-          <p>Создать калькулятор:</p>
-          <input id="formula" type="text" placeholder="Введите формулу"></input>
-          <input
-            id="name"
-            type="text"
-            placeholder="Введите название калькулятора"
-          ></input>
-          <button id="create" onClick={() => AddCalc()}>
-            Создать
-          </button>
+      <div className='adm'>
+      <div className='Admin'>
+        <div className='calcs1'>
+        <p>Создать калькулятор:</p>
+        <input id="name" type="text" placeholder="Имя калькулятора" />
+        <input id="percent" type="number" placeholder="Процент кредита" />
+        <button id="create" onClick={addCalc}>Подтвердить</button>
+        <p id='message'></p>
+        </div>
+        <div className='calcs'>
+          {calcs.map((item) => (
+            <div className='calc' key={item._id}>
+              <p className='calc-name'>Название: {item.nameCalc}</p>
+              <button className='calc-delete' onClick={() => deleteCalc(item._id)}>Удалить калькулятор</button>
+              <button className='calc-edit' onClick={() => editCalc(item._id)}>Изменить калькулятор</button>
+
+            </div>
+          ))}
         </div>
       </div>
-      <Footer />
+      </div>
+<Footer />
     </>
   );
 }
+
 export default Admin;
